@@ -7,7 +7,7 @@ from torchvision import transforms
 import torch.nn.functional as F
 from PIL import Image
 import argparse
-import cv2
+import numpy as np
 
 class convNet(nn.Module):
     def __init__(self, num_classes=3):
@@ -60,17 +60,19 @@ if args.model == 'resnet18':
     weights_path = './saved_models/resnet18.pt'
 else:
     model = convNet()
-    weights_path = './saved_models/resnet18.pt'
+    weights_path = './saved_models/LeNet_model.pt'
 
 model.load_state_dict(torch.load(weights_path, map_location='cpu'))
 model.eval()
 classes = ['Non-Pneumonia', 'Other Pneumonia', 'COVID-19']
 
 if args.image_path.split('.')[-1] == 'dcm':
+    import pydicom as dicom
     im = dicom.read_file(args.image_path).pixel_array
     if len(im.shape) != 3 or im.shape[2] != 3:
         im = np.stack((im,) * 3, -1)
 else:
+    import cv2
     im = cv2.imread(args.image_path)
     if len(im.shape) != 3 or im.shape[2] != 3:
         im = np.stack((im,) * 3, -1)
