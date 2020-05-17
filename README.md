@@ -6,8 +6,10 @@ This repo contains the inference code and the saved model for the covid19 detect
 * pytorch
 * torchvision
 * PIL
-* opencv2
+* numpy
 * argparse
+* opencv2 (if using opencv2 readable image like, `.jpg`, `.jfif`, `.png`, etc)
+* pydicom (if using `.dcm` image)
 
 ## Running for inferencing:
 1. Clone the repo
