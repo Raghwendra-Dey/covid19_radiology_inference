@@ -50,12 +50,19 @@ class convNet(nn.Module):
 
 
 parser = argparse.ArgumentParser(description="Covid-19 detection from X-ray Images")
-parser.add_argument('--weights_path', type=str, default='./saved_models/LeNet_model.pt', help="Path to the weights of the model")
-parser.add_argument('--image_path', type=str, help="Path to the test image for prediction image_name must be of the form image.ext")
+parser.add_argument('--model', type=str, default='resnet18', help="Path to the weights of the model")
+parser.add_argument('--image_path', type=str, default='./images/EUNJ6ZsXkAYcyW8.jfif', help="Path to the test image for prediction image_name must be of the form image.ext")
 args = parser.parse_args()
 
-model = convNet()
-model.load_state_dict(torch.load(args.weights_path, map_location='cpu'))
+if args.model == 'resnet18':
+    model = torchvision.models.resnet18()
+    model.fc = nn.Linear(model.fc.in_features, 3)
+    weights_path = './saved_models/resnet18.pt'
+else:
+    model = convNet()
+    weights_path = './saved_models/resnet18.pt'
+
+model.load_state_dict(torch.load(weights_path, map_location='cpu'))
 model.eval()
 classes = ['Non-Pneumonia', 'Other Pneumonia', 'COVID-19']
 
