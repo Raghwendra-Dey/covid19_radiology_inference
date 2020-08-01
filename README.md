@@ -21,3 +21,5 @@ Saved Model weights are provided with this repo, in the `saved_models` folder so
 `MODEL_NAME_FOR_INFERENCING` choices:<br>
    1. resnet18 -- accuracy achieved: 66%<br>
    2. LeNet -- accuracy acheived: 64.9%
+
+NOTE: You can find the training code for generating these models [here](https://github.com/Raghwendra-Dey/covid19_cxr_detection).
