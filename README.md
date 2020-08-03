@@ -11,6 +11,9 @@ This repo contains the inference code and the saved model for the covid19 detect
 * opencv2 (if using opencv2 readable image like, `.jpg`, `.jfif`, `.png`, etc)
 * pydicom (if using `.dcm` image)
 
+## Inference:
+![Inferencing](https://user-images.githubusercontent.com/45457947/89180253-05b59200-d5af-11ea-9515-04cd82478419.png)
+
 ## Running for inferencing:
 1. Clone the repo
 2. Open up the terminal and type the following:<br>
